@@ -2,6 +2,8 @@ package it.polito.tdp.lab04.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.lab04.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +13,8 @@ import javafx.scene.control.TextField;
 
 public class SegreteriaStudentiController {
 
+	private Model model;
+	
     @FXML
     private ResourceBundle resources;
 
@@ -18,7 +22,7 @@ public class SegreteriaStudentiController {
     private URL location;
 
     @FXML
-    private ComboBox<?> btnSceltaCorsi;
+    private ComboBox<String> btnSceltaCorsi;
 
     @FXML
     private Button btnCercaIscritti;
@@ -77,7 +81,9 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doSpunta(ActionEvent event) {
-
+    	
+    	
+    	
     }
 
     @FXML
@@ -92,6 +98,10 @@ public class SegreteriaStudentiController {
         assert btnIscrivi != null : "fx:id=\"btnIscrivi\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
-
     }
+
+	public void setModel(Model model) {
+		this.model = model;
+		btnSceltaCorsi.getItems().addAll(model.getCorsi()); // NOTA BENE!
+	}
 }

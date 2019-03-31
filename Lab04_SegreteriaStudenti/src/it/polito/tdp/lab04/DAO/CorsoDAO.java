@@ -38,8 +38,15 @@ public class CorsoDAO {
 
 				// Crea un nuovo JAVA Bean Corso
 				// Aggiungi il nuovo oggetto Corso alla lista corsi
+			
+				Corso c = new Corso(codins, numeroCrediti, nome, periodoDidattico);
+				corsi.add(c);
+				
 			}
-
+			
+			rs.close();
+			conn.close();
+			
 			return corsi;
 
 		} catch (SQLException e) {
