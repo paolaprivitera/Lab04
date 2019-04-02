@@ -44,11 +44,24 @@ public class Model {
 		
 	}
 
-	public List<Studente> getIscrittiCorso(String corso) {
+	public List<String> getIscrittiCorso(String corso) {
 		
+		CorsoDAO dao = new CorsoDAO();
 		
+		List<Studente> studenti = new LinkedList<Studente>();
+		List<String> studentiCorso = new LinkedList<String>();
 		
-		return null;
+		// studenti = dao.getIscrittiCorso(corso);
+		
+		Corso c = dao.cercaCorso(corso);
+		
+		studenti = dao.getStudentiIscrittiAlCorso(c);
+		
+		for(Studente s : studenti) {
+			studentiCorso.add(s.toString());
+		}
+		
+		return studentiCorso;
 	}
 	
 	

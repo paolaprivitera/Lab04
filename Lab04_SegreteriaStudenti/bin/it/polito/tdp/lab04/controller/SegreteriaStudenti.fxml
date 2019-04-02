@@ -24,7 +24,7 @@
             <HBox>
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Corso:" />
-                  <ComboBox fx:id="btnSceltaCorsi" onAction="#doSceltaCorsi" prefWidth="150.0" promptText="Corsi">
+                  <ComboBox fx:id="btnSceltaCorsi" onAction="#doSceltaCorsi" promptText="Corsi">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

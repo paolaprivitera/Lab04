@@ -11,42 +11,6 @@ import it.polito.tdp.lab04.model.Studente;
 
 public class StudenteDAO {
 
-	/*public List<Studente> getStudenti() {
-		final String sql = "SELECT * FROM studente";
-
-		List<Studente> studenti = new LinkedList<Studente>();
-		Studente s;
-
-		try {
-			Connection conn = ConnectDB.getConnection();
-			PreparedStatement st = conn.prepareStatement(sql);
-
-			ResultSet rs = st.executeQuery();
-
-			while (rs.next()) {
-
-				int matr = rs.getInt("matricola");
-				String cognome = rs.getString("cognome");
-				String nome = rs.getString("nome");
-				String cds = rs.getString("CDS");
-
-				s = new Studente(matr, cognome, nome, cds);
-				studenti.add(s);
-
-			}
-
-			// rs.close();
-			conn.close();
-
-			return studenti;
-
-		} catch (SQLException e) {
-			// e.printStackTrace();
-			throw new RuntimeException("Errore Db");
-		}
-
-	}*/
-
 	public Studente getStudentePerMatricola(int matricola) {
 		final String sql = "SELECT * FROM studente WHERE matricola = ?";
 		Studente s=null;
@@ -70,7 +34,7 @@ public class StudenteDAO {
 
 			// rs.close();
 			conn.close();
-			
+
 			return s;
 
 		} catch (SQLException e) {
@@ -79,5 +43,41 @@ public class StudenteDAO {
 		}
 
 	}
+
+	/*public List<Studente> getStudenti() {
+	final String sql = "SELECT * FROM studente";
+
+	List<Studente> studenti = new LinkedList<Studente>();
+	Studente s;
+
+	try {
+		Connection conn = ConnectDB.getConnection();
+		PreparedStatement st = conn.prepareStatement(sql);
+
+		ResultSet rs = st.executeQuery();
+
+		while (rs.next()) {
+
+			int matr = rs.getInt("matricola");
+			String cognome = rs.getString("cognome");
+			String nome = rs.getString("nome");
+			String cds = rs.getString("CDS");
+
+			s = new Studente(matr, cognome, nome, cds);
+			studenti.add(s);
+
+		}
+
+		// rs.close();
+		conn.close();
+
+		return studenti;
+
+	} catch (SQLException e) {
+		// e.printStackTrace();
+		throw new RuntimeException("Errore Db");
+	}
+
+}*/
 
 }

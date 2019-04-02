@@ -63,14 +63,19 @@ public class SegreteriaStudentiController {
     void doCercaIscritti(ActionEvent event) {
     	
     	String corso = btnSceltaCorsi.getValue();
-    	List<Studente> studentiIscritti = new LinkedList<Studente>();
+    	List<String> studentiIscritti = new LinkedList<String>();
     	
-    	if(corso==null) {
+    	if(corso==null || corso.compareTo("")==0) {
     		txtResult.setText("Nessun corso selezionato!");
     	}
     	else {
     		studentiIscritti = model.getIscrittiCorso(corso);
+    		for (String s : studentiIscritti) {
+    			txtResult.appendText(s+"\n");
+    		}
+    	
     	}
+    	
     	
     }
 

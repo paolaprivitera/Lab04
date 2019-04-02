@@ -38,15 +38,15 @@ public class CorsoDAO {
 
 				// Crea un nuovo JAVA Bean Corso
 				// Aggiungi il nuovo oggetto Corso alla lista corsi
-			
+
 				Corso c = new Corso(codins, numeroCrediti, nome, periodoDidattico);
 				corsi.add(c);
-				
+
 			}
-			
-			rs.close();
+
+			// rs.close();
 			conn.close();
-			
+
 			return corsi;
 
 		} catch (SQLException e) {
@@ -65,8 +65,41 @@ public class CorsoDAO {
 	/*
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
-	public void getStudentiIscrittiAlCorso(Corso corso) {
-		// TODO
+	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
+
+		List<Studente> studenti = new LinkedList<Studente>();
+		StudenteDAO dao = new StudenteDAO();
+		Studente s;
+
+		final String sql = "SELECT matricola FROM iscrizione WHERE codins = ?";
+
+		// List<Corso> corsi = new LinkedList<Corso>();
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, corso.getCodins());
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				
+				int matricola = rs.getInt("matricola");
+				
+				s = dao.getStudentePerMatricola(matricola);
+				
+				studenti.add(s);
+			}
+
+			// rs.close();
+			conn.close();
+
+			return studenti;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+
 	}
 
 	/*
@@ -77,4 +110,20 @@ public class CorsoDAO {
 		// ritorna true se l'iscrizione e' avvenuta con successo
 		return false;
 	}
+
+	public Corso cercaCorso(String corso) {
+		
+		List<Corso> corsi = new LinkedList<Corso>();
+		corsi = this.getTuttiICorsi();
+		
+		for(Corso c : corsi) {
+			if (c.getNome().compareTo(corso)==0) {
+				return c;
+			}
+		}
+		
+		return null;
+	}
+
+
 }
