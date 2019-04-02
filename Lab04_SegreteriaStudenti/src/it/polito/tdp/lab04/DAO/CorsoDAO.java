@@ -125,5 +125,19 @@ public class CorsoDAO {
 		return null;
 	}
 
+	public Corso getCorsoPerCodins(String codins) {
+		
+		List<Corso> corsi = new LinkedList<Corso>();
+		corsi = this.getTuttiICorsi();
+		
+		for(Corso c : corsi) {
+			if (c.getCodins().compareTo(codins)==0) {
+				return c;
+			}
+		}
+		
+		return null;
+	}
+
 
 }

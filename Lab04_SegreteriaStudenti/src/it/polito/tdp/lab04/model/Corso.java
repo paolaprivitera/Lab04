@@ -62,6 +62,12 @@ public class Corso {
 			return false;
 		return true;
 	}
-	
 
+	@Override
+	public String toString() {
+		return String.format("Corso %s, %s CFU, %s, periodo %s", codins, crediti, nome, pd);
+	}
+	
+	
+	
 }

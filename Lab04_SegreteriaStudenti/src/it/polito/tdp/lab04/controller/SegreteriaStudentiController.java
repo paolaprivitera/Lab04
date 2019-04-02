@@ -56,7 +56,21 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doCercaCorso(ActionEvent event) {
-
+    	
+    	List<String> corsiMatricola = new LinkedList<String>();
+    	
+    	int matricola = Integer.parseInt(txtMatricola.getText());
+    	corsiMatricola = model.getCorsiPerMatricola(matricola);
+    	
+    	if(corsiMatricola == null) {
+    		txtResult.appendText("Matricola non presente!");
+    	}
+    	else {
+    		for(String s : corsiMatricola) {
+    			txtResult.appendText(s+"\n");
+    		}
+    	}
+    	
     }
 
     @FXML
