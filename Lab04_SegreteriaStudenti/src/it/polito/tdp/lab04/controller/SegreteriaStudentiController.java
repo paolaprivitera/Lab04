@@ -1,9 +1,12 @@
 package it.polito.tdp.lab04.controller;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.lab04.model.Model;
+import it.polito.tdp.lab04.model.Studente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -58,7 +61,17 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doCercaIscritti(ActionEvent event) {
-
+    	
+    	String corso = btnSceltaCorsi.getValue();
+    	List<Studente> studentiIscritti = new LinkedList<Studente>();
+    	
+    	if(corso==null) {
+    		txtResult.setText("Nessun corso selezionato!");
+    	}
+    	else {
+    		studentiIscritti = model.getIscrittiCorso(corso);
+    	}
+    	
     }
 
     @FXML
@@ -82,7 +95,14 @@ public class SegreteriaStudentiController {
     @FXML
     void doSpunta(ActionEvent event) {
     	
+    	int matricola = Integer.parseInt(txtMatricola.getText());
+    	Studente s = model.getCompletamentoAutomatico(matricola);
     	
+     	/*txtNome.setText(model.getCompletamentoAutomatico(matricola).getNome());
+    	txtCognome.setText(model.getCompletamentoAutomatico(matricola).getCognome());*/
+    	txtNome.setText(s.getNome());
+    	txtCognome.setText(s.getCognome());
+    
     	
     }
 

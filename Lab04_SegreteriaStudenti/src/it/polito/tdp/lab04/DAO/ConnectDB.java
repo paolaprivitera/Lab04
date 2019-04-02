@@ -7,14 +7,13 @@ import java.sql.SQLException;
 public class ConnectDB {
 
 	static private final String jdbcUrl = "jdbc:mysql://localhost/iscritticorsi?user=root&password=root24&serverTimezone=Europe/Rome";
-	static private Connection connection = null;
+	//static private Connection connection = null;
 
 	public static Connection getConnection() {
 
-		try {
-			if (connection == null) {
-				connection = DriverManager.getConnection(jdbcUrl);
-			}
+		try { // nel caso precedente || connection.isClosed();
+				Connection connection = DriverManager.getConnection(jdbcUrl);
+			
 			return connection;
 
 		} catch (SQLException e) {

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import it.polito.tdp.lab04.DAO.CorsoDAO;
+import it.polito.tdp.lab04.DAO.StudenteDAO;
 
 public class Model {
 
@@ -20,6 +21,34 @@ public class Model {
 		}
 		
 		return corsi;
+	}
+
+	public Studente getCompletamentoAutomatico(int matricola) {
+		StudenteDAO dao = new StudenteDAO();
+		Studente s=null;
+		
+		s = dao.getStudentePerMatricola(matricola);
+		
+		return s;
+		
+		/*List<Studente> studenti = new LinkedList<Studente>(dao.getStudenti());
+				
+		for(Studente s : studenti) {
+			if(s.getMatricola()==matricola) {
+				return s;
+			}
+		}
+		
+		return null;*/
+		
+		
+	}
+
+	public List<Studente> getIscrittiCorso(String corso) {
+		
+		
+		
+		return null;
 	}
 	
 	
