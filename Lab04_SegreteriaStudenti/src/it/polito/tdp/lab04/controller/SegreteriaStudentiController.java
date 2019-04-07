@@ -59,10 +59,20 @@ public class SegreteriaStudentiController {
 
 		List<String> corsiMatricola = new LinkedList<String>();
 
-		int matricola = Integer.parseInt(txtMatricola.getText());
+		int matricola = 0;
+		boolean trovato = false;
+
+		try {
+			matricola = Integer.parseInt(txtMatricola.getText());
+		}
+		catch(NumberFormatException e) {
+			trovato = true;
+			txtResult.setText("La matricola non è scritta in un formato valido!\n");
+		}
+
 		corsiMatricola = model.getCorsiPerMatricola(matricola);
 
-		if(corsiMatricola == null) {
+		if(corsiMatricola == null && trovato == false) {
 			txtResult.appendText("Matricola non presente!");
 		}
 		else {
@@ -77,27 +87,32 @@ public class SegreteriaStudentiController {
 	void doCercaIscritti(ActionEvent event) {
 
 		txtResult.clear();
-		
+
 		String corso = btnSceltaCorsi.getValue();
 		List<String> studentiIscritti = new LinkedList<String>();
 
 		String matr = txtMatricola.getText();
 		boolean iscritto = false;
-		int matricola;
+		int matricola = 0;
 
 		if(corso.compareTo("")!=0 && matr.compareTo("")!=0) { // NOTA BENE: "" vuol dire che non ha selezionato niente
-			
-			matricola = Integer.parseInt(matr);
-			
+
+			try {
+				matricola = Integer.parseInt(matr);
+			}
+			catch(NumberFormatException e) {
+				txtResult.setText("La matricola non è scritta in un formato valido!\n");
+			}
+
 			iscritto = model.getIscrizione(corso, matricola);			
-			
+
 			if(iscritto) {
 				txtResult.setText("Studente già iscritto a questo corso");
 			}
 			else {
 				txtResult.setText("Studente non iscritto a questo corso");
 			}
-			
+
 		}
 		else if(matr.compareTo("")==0) {
 			if(corso==null || corso.compareTo("")==0) {
@@ -110,8 +125,6 @@ public class SegreteriaStudentiController {
 				}
 			}
 		}
-
-
 
 	}
 
@@ -136,8 +149,17 @@ public class SegreteriaStudentiController {
 	@FXML
 	void doSpunta(ActionEvent event) {
 
-		int matricola = Integer.parseInt(txtMatricola.getText());
-		Studente s = model.getCompletamentoAutomatico(matricola);
+		int matricola = 0;
+		Studente s = null;
+
+		try {
+			matricola = Integer.parseInt(txtMatricola.getText());
+			s = model.getCompletamentoAutomatico(matricola);
+		}
+		catch(NumberFormatException e) {
+			txtResult.setText("La matricola non è scritta in un formato valido!\n");
+		}
+	
 
 		/*txtNome.setText(model.getCompletamentoAutomatico(matricola).getNome());
     	txtCognome.setText(model.getCompletamentoAutomatico(matricola).getCognome());*/

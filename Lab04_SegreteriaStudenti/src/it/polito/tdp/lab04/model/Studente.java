@@ -63,7 +63,7 @@ public class Studente {
 
 	@Override
 	public String toString() {
-		return String.format("Studente %s, %s, %s, %s", matricola, cognome, nome, CDS);
+		return String.format("Studente %s, %s %s, %s", matricola, cognome, nome, CDS);
 	}
 	
 	
