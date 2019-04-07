@@ -131,6 +131,27 @@ public class SegreteriaStudentiController {
 	@FXML
 	void doIscrivi(ActionEvent event) {
 
+		String nomeCorso = btnSceltaCorsi.getValue();
+		String matr = txtMatricola.getText();
+		int matricola = 0;
+		boolean iscritto = false;
+		
+		try {
+			matricola = Integer.parseInt(matr);
+		}
+		catch(NumberFormatException e) {
+			txtResult.setText("La matricola non è scritta in un formato valido!\n");
+		}
+		
+		iscritto = model.iscriviStudente(matricola, nomeCorso);
+		
+		if(iscritto) {
+			txtResult.setText("Studente iscritto al corso!");
+		}
+		else {
+			txtResult.setText("Studente già iscritto al corso!");
+		}
+		
 	}
 
 	@FXML

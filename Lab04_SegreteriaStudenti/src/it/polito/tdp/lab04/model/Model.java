@@ -104,6 +104,22 @@ public class Model {
 		return trovato;
 	}
 
+	public boolean iscriviStudente(int matricola, String nomeCorso) {
+		
+		StudenteDAO Sdao = new StudenteDAO();
+		CorsoDAO Cdao = new CorsoDAO();
+		
+		Studente s = Sdao.getStudentePerMatricola(matricola);
+		Corso c = Cdao.cercaCorso(nomeCorso);
+		
+		if (!Sdao.getCorsiPerMatricola(s).contains(c)) {
+			Cdao.iscriviStudente(s, c);
+			return true;
+		}
+		else
+			return false;
+	}
+
 
 
 }

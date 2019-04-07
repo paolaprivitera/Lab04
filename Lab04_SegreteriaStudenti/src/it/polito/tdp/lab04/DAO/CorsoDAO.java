@@ -139,5 +139,29 @@ public class CorsoDAO {
 		return null;
 	}
 
+	public void iscriviStudente(Studente s, Corso c) {
+	
+		Connection conn = ConnectDB.getConnection();
+		String sql = "INSERT INTO iscrizione VALUES (?,?)";
+		
+		try {
+			
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, s.getMatricola());
+			st.setString(2, c.getCodins());
+			st.execute(); // NOTA BENE: non st.executeQuery();
+			
+			conn.close();			
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Errore Db");
+		}
+		
+	}
 
+
+	
+	
+	
 }
