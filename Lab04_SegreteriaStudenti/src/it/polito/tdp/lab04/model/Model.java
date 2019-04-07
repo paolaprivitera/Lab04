@@ -86,6 +86,24 @@ public class Model {
 
 	}
 
+	public boolean getIscrizione(String corso, int matricola) {
+		
+		StudenteDAO Sdao = new StudenteDAO();
+		CorsoDAO Cdao = new CorsoDAO();
+		
+		Studente s = Sdao.getStudentePerMatricola(matricola);
+		Corso c = Cdao.cercaCorso(corso);
+		
+		boolean trovato = false;
+		
+		List<Corso> corsiMatricola = new LinkedList<Corso>(Sdao.getCorsiPerMatricola(s));
+		
+		if(corsiMatricola.contains(c))
+			trovato = true;
+		
+		return trovato;
+	}
+
 
 
 }
